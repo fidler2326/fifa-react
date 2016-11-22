@@ -1,17 +1,19 @@
 var Team = React.createClass({
   getInitialState: function() {
 		return {
-			teams: ["Team #1","Team #2","Team #3","Team #4",]
+			teams: ["Team #1","Team #2","Team #3","Team #4",],
 		}
 	},
   render: function(i) {
+    var teamHome = Math.floor((Math.random() * this.state.teams.length));
+    var teamAway = Math.floor((Math.random() * this.state.teams.length));
     return (
       <div class="teams">
         <div class="half">
-
+          {this.state.teams[teamHome]}
         </div>
         <div class="half">
-
+          {this.state.teams[teamAway]}
         </div>
   		</div>
     );
@@ -19,12 +21,6 @@ var Team = React.createClass({
 });
 
 var TeamsButton = React.createClass({
-	getInitialState: function() {
-		return {
-			count: 0,
-			target: 10
-		}
-	},
   renderTeam: function() {
     ReactDOM.render(
     	<Team />, document.getElementById("team")
