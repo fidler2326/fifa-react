@@ -1,7 +1,12 @@
 var Team = React.createClass({
   getInitialState: function() {
 		return {
-			teams: ["Team #1","Team #2","Team #3","Team #4",],
+      teams: [
+        { name: "Team #1", stars: "4" },
+        { name: "Team #2", stars: "3" },
+        { name: "Team #3", stars: "2" },
+        { name: "Team #4", stars: "1" },
+      ]
 		}
 	},
   render: function(i) {
@@ -10,10 +15,12 @@ var Team = React.createClass({
     return (
       <div class="teams">
         <div class="half">
-          {this.state.teams[teamHome]}
+          Team: {this.state.teams[teamHome].name}
+          Rating: {this.state.teams[teamHome].stars}
         </div>
         <div class="half">
-          {this.state.teams[teamAway]}
+          Team: {this.state.teams[teamAway].name}
+          Rating: {this.state.teams[teamAway].stars}
         </div>
   		</div>
     );
