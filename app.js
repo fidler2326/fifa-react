@@ -42,6 +42,23 @@ var TeamsButton = React.createClass({
   }
 });
 
+var TeamsMenu = React.createClass({
+  loadData: function() {
+    console.log('yo');
+    $.ajax({
+      type: 'GET',
+      dataType: 'json',
+      url: 'teams.json',
+      success: function(response){
+        console.log(response);
+      }
+    })
+  },
+  render: function() {
+    {this.loadData}
+  }
+})
+
 ReactDOM.render(
 	<TeamsButton />, document.getElementById("container")
 );
