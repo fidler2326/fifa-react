@@ -1,25 +1,38 @@
 var Team = React.createClass({
   getInitialState: function() {
 		return {
-      teams: [
-        { name: "Team #1", stars: "4" },
-        { name: "Team #2", stars: "3" },
-        { name: "Team #3", stars: "2" },
-        { name: "Team #4", stars: "1" },
-      ]
+      teams: [ {} ]
 		}
 	},
+  componentDidMount: function() {
+    $.ajax({
+      url: 'teams.json',
+      dataType: 'json',
+      cache: false,
+      success: function(data) {
+        var i = 0;
+        for (i = 0; i < data.length; i++) {
+          this.state.teams.push(data[i]);
+          this.forceUpdate();
+        }
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error(status, err.toString());
+      // }.bind(this)
+      }
+    });
+  },
   render: function(i) {
     var teamHome = Math.floor((Math.random() * this.state.teams.length));
     var teamAway = Math.floor((Math.random() * this.state.teams.length));
     return (
       <div class="teams">
         <div class="half">
-          Team: {this.state.teams[teamHome].name}
+          Team: {this.state.teams[teamHome].team}
           Rating: {this.state.teams[teamHome].stars}
         </div>
         <div class="half">
-          Team: {this.state.teams[teamAway].name}
+          Team: {this.state.teams[teamAway].team}
           Rating: {this.state.teams[teamAway].stars}
         </div>
   		</div>
@@ -41,23 +54,6 @@ var TeamsButton = React.createClass({
     );
   }
 });
-
-var TeamsMenu = React.createClass({
-  loadData: function() {
-    console.log('yo');
-    $.ajax({
-      type: 'GET',
-      dataType: 'json',
-      url: 'teams.json',
-      success: function(response){
-        console.log(response);
-      }
-    })
-  },
-  render: function() {
-    {this.loadData}
-  }
-})
 
 ReactDOM.render(
 	<TeamsButton />, document.getElementById("container")
