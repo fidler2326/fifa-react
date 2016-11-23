@@ -1,6 +1,7 @@
 var Team = React.createClass({
   getInitialState: function() {
 		return {
+      // NOTE: For some reason if the array is empty I cant push anything to it
       teams: [ {} ]
 		}
 	},
@@ -10,7 +11,12 @@ var Team = React.createClass({
       dataType: 'json',
       cache: false,
       success: function(data) {
+        // Empty array first
+        // NOTE: This is to remove the first object in the array that is set initially
+        this.state.teams=[];
+        // NOTE: Need to define i outside of the for loop (not sure why this is)
         var i = 0;
+        // Loop through each team and push to array
         for (i = 0; i < data.length; i++) {
           this.state.teams.push(data[i]);
           this.forceUpdate();
@@ -18,7 +24,6 @@ var Team = React.createClass({
       }.bind(this),
       error: function(xhr, status, err) {
         console.error(status, err.toString());
-      // }.bind(this)
       }
     });
   },
