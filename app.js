@@ -26,12 +26,12 @@ var Team = React.createClass({
     var teamHome = Math.floor((Math.random() * this.state.teams.length));
     var teamAway = Math.floor((Math.random() * this.state.teams.length));
     return (
-      <div class="teams">
-        <div class="half">
+      <div className="teams">
+        <div className="half">
           Team: {this.state.teams[teamHome].team}
           Rating: {this.state.teams[teamHome].stars}
         </div>
-        <div class="half">
+        <div className="half">
           Team: {this.state.teams[teamAway].team}
           Rating: {this.state.teams[teamAway].stars}
         </div>
