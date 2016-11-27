@@ -1,11 +1,19 @@
 var Team = React.createClass({
-  render: function(i) {
+  render: function() {
     return (
       <div className="half">
         <p>{this.props.team.team}</p>
         <p>{this.props.team.league}, {this.props.team.country}</p>
         <p>{this.props.team.stars}</p>
       </div>
+    );
+  }
+});
+
+var ListItem = React.createClass({
+  render: function(team, i) {
+    return (
+      <li>{this.props.team.team}</li>
     );
   }
 });
@@ -51,9 +59,16 @@ var TeamsButton = React.createClass({
 	},
   render: function() {
     return (
-			<div>
-				<a href="#" onClick={this.renderTeam} className="btn">Get Teams</a>
-			</div>
+      <div>
+        <ul className="menu">
+          {this.state.teams.map(function(team, i){
+            return <ListItem key={i} team={team} ref={'team' + i} />
+          }, this)}
+        </ul>
+  			<div>
+  				<a href="#" onClick={this.renderTeam} className="btn">Get Teams</a>
+  			</div>
+      </div>
     );
   }
 });
