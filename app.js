@@ -1,10 +1,22 @@
 var Team = React.createClass({
+  render: function(i) {
+    return (
+      <div className="half">
+        <p>{this.props.team.team}</p>
+        <p>{this.props.team.league}, {this.props.team.country}</p>
+        <p>{this.props.team.stars}</p>
+      </div>
+    );
+  }
+});
+
+var TeamsButton = React.createClass({
   getInitialState: function() {
-		return {
+    return {
       // NOTE: For some reason if the array is empty I cant push anything to it
       teams: [ {} ]
-		}
-	},
+    }
+  },
   componentDidMount: function() {
     $.ajax({
       url: 'teams.json',
@@ -27,29 +39,14 @@ var Team = React.createClass({
       }
     });
   },
-  render: function(i) {
-    var teamHome = Math.floor((Math.random() * this.state.teams.length));
-    var teamAway = Math.floor((Math.random() * this.state.teams.length));
-
-    return (
-      <div className="teams">
-        <div className="half">
-          {this.state.teams[teamHome].team}
-          {this.state.teams[teamHome].stars}
-        </div>
-        <div className="half">
-          {this.state.teams[teamAway].team}
-          {this.state.teams[teamAway].stars}
-        </div>
-  		</div>
-    );
-  }
-});
-
-var TeamsButton = React.createClass({
   renderTeam: function() {
+    var home = Math.floor((Math.random() * this.state.teams.length));
+    var away = Math.floor((Math.random() * this.state.teams.length));
     ReactDOM.render(
-    	<Team />, document.getElementById("team")
+    	<Team team={this.state.teams[home]} />, document.getElementById("home")
+    );
+    ReactDOM.render(
+    	<Team team={this.state.teams[away]} />, document.getElementById("away")
     );
 	},
   render: function() {
@@ -62,5 +59,5 @@ var TeamsButton = React.createClass({
 });
 
 ReactDOM.render(
-	<TeamsButton />, document.getElementById("container")
+	<TeamsButton />, document.getElementById("button")
 );
