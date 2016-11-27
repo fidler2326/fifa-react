@@ -30,15 +30,16 @@ var Team = React.createClass({
   render: function(i) {
     var teamHome = Math.floor((Math.random() * this.state.teams.length));
     var teamAway = Math.floor((Math.random() * this.state.teams.length));
+
     return (
       <div className="teams">
         <div className="half">
-          Team: {this.state.teams[teamHome].team}
-          Rating: {this.state.teams[teamHome].stars}
+          {this.state.teams[teamHome].team}
+          {this.state.teams[teamHome].stars}
         </div>
         <div className="half">
-          Team: {this.state.teams[teamAway].team}
-          Rating: {this.state.teams[teamAway].stars}
+          {this.state.teams[teamAway].team}
+          {this.state.teams[teamAway].stars}
         </div>
   		</div>
     );
@@ -54,7 +55,7 @@ var TeamsButton = React.createClass({
   render: function() {
     return (
 			<div>
-				<a href="#" onClick={this.renderTeam}>Get Teams</a>
+				<a href="#" onClick={this.renderTeam} className="btn">Get Teams</a>
 			</div>
     );
   }
