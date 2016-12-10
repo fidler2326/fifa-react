@@ -1,6 +1,7 @@
 [
   {
-    "leagueTitle": "Prem",
+    "leagueTitle": "England Premier League",
+    "leagueCode": "prem",
     "teams": [
       {"name":"Arsenal", "stars":"5.0", "country":"England", "league":"Barclays PL"},
       {"name":"Aston Villa", "stars":"4.0", "country":"England", "league":"Barclays PL"},
@@ -26,7 +27,8 @@
   },
 
   {
-    "leagueTitle": "Champ",
+    "leagueTitle": "England Championship",
+    "leagueCode": "champ",
     "teams": [
       {"name":"Birmingham City", "stars":"3.0", "country":"England", "league":"FL Championship"},
       {"name":"Blackburn Rvrs", "stars":"3.0", "country":"England", "league":"FL Championship"},

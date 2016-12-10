@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom';
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
 import $ from 'jquery';
 
@@ -16,6 +16,16 @@ var Team = React.createClass({
 });
 
 var ListItem = React.createClass({
+  getInitialState: function() {
+		return {
+      myTeams: []
+		}
+	},
+  addTeam: function(team){
+    console.log("Clicked Team:", team);
+    this.state.myTeams.push(team);
+    console.log("My Teams", this.state.myTeams);
+  },
   render: function(){
     return <ul>
       <li>
@@ -27,7 +37,7 @@ var ListItem = React.createClass({
   createItems: function(team){
     if (team != null) {
       var output = [];
-      for(var i = 0; i < team.length; i++) output.push(<li key={i}>{team[i].name}</li>);
+      for(var i = 0; i < team.length; i++) output.push(<li key={i}><input type="checkbox" id={this.props.team.leagueCode + '-' + i} /><label htmlFor={this.props.team.leagueCode + '-' + i} onClick={this.addTeam.bind(this, team[i])}>{team[i].name}</label></li>);
       return output;
     }
   }
