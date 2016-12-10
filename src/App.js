@@ -16,10 +16,20 @@ var Team = React.createClass({
 });
 
 var ListItem = React.createClass({
-  render: function(team, i) {
-    return (
-      <li>{this.props.team.team}</li>
-    );
+  render: function(){
+    return <ul>
+      <li>
+        {this.props.team.leagueTitle}
+        <ul>{this.createItems(this.props.team.teams)}</ul>
+      </li>
+    </ul>;
+  },
+  createItems: function(team){
+    if (team != null) {
+      var output = [];
+      for(var i = 0; i < team.length; i++) output.push(<li key={i}>{team[i].name}</li>);
+      return output;
+    }
   }
 });
 
@@ -56,10 +66,10 @@ var TeamsButton = React.createClass({
     var home = Math.floor((Math.random() * this.state.teams.length));
     var away = Math.floor((Math.random() * this.state.teams.length));
     ReactDOM.render(
-    	<Team team={this.state.teams[home]} />, document.getElementById("home")
+    	<Team team={this.state.teams[home].teams[home]} />, document.getElementById("home")
     );
     ReactDOM.render(
-    	<Team team={this.state.teams[away]} />, document.getElementById("away")
+    	<Team team={this.state.teams[away].teams[away]} />, document.getElementById("away")
     );
 	},
   render: function() {
