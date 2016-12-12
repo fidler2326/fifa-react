@@ -49,7 +49,8 @@ var TeamsButton = React.createClass({
     return {
       // NOTE: For some reason if the array is empty I cant push anything to it
       teams: [ {} ],
-      myTeams: []
+      myTeams: [],
+      clicked: false
     }
   },
   componentDidMount: function() {
@@ -74,6 +75,13 @@ var TeamsButton = React.createClass({
       }
     });
   },
+  handleClick: function() {
+    if(this.state.clicked != true) {
+      this.setState({clicked: true});
+    } else {
+      this.setState({clicked: false});
+    }
+  },
   getTeams: function(){
     var home = Math.floor((Math.random() * this.state.myTeams.length));
     var away = Math.floor((Math.random() * this.state.myTeams.length));
@@ -88,9 +96,11 @@ var TeamsButton = React.createClass({
     );
   },
   render: function() {
+    var className = this.state.clicked ? 'active' : '';
     return (
       <div>
-        <ul className="menu">
+        <a href="#" className={"menu-trigger " + className} onClick={this.handleClick}>Menu</a>
+        <ul className={"menu " + className} >
           {this.state.teams.map(function(team, i){
             return <ListItem key={i} team={team} myTeams={this.state.myTeams} ref={'team' + i} />
           }, this)}
