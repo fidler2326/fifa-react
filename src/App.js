@@ -17,19 +17,35 @@ var Team = React.createClass({
 });
 
 var ListItem = React.createClass({
+  getInitialState: function() {
+    return {
+      clicked: false
+    }
+  },
   addTeam: function(team){
     console.log("Clicked Team:", team);
     // Push team to the my teams array
     this.props.myTeams.push(team);
     console.log("My Teams", this.props.myTeams);
   },
+  handleClick: function() {
+    if(this.state.clicked != true) {
+      this.setState({clicked: true});
+    } else {
+      this.setState({clicked: false});
+    }
+  },
   render: function(){
+    var className = this.state.clicked ? 'active' : '';
     return (
     <div>
       <ul>
-        <li>
+        <li onClick={this.handleClick}>
           {this.props.team.leagueTitle}
-          <ul>{this.createItems(this.props.team.teams)}</ul>
+          <ul className={"sub-menu " + className}>
+            <li onClick={this.handleClick}>Back</li>
+            {this.createItems(this.props.team.teams)}
+          </ul>
         </li>
       </ul>
     </div>
