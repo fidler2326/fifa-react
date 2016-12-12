@@ -4,11 +4,12 @@ import './App.css';
 import $ from 'jquery';
 
 var Team = React.createClass({
-  render: function() {
+  render: function(team) {
+    console.log("Here", this.props.team);
     return (
       <div className="half">
-        <p>{this.props.team.team}</p>
-        <p>{this.props.team.league}, {this.props.team.country}</p>
+        <p>{this.props.team.name}</p><br />
+        <p>{this.props.team.league}, {this.props.team.country}</p><br />
         <p>{this.props.team.stars}</p>
       </div>
     );
@@ -16,23 +17,23 @@ var Team = React.createClass({
 });
 
 var ListItem = React.createClass({
-  getInitialState: function() {
-		return {
-      myTeams: []
-		}
-	},
   addTeam: function(team){
     console.log("Clicked Team:", team);
-    this.state.myTeams.push(team);
-    console.log("My Teams", this.state.myTeams);
+    // Push team to the my teams array
+    this.props.myTeams.push(team);
+    console.log("My Teams", this.props.myTeams);
   },
   render: function(){
-    return <ul>
-      <li>
-        {this.props.team.leagueTitle}
-        <ul>{this.createItems(this.props.team.teams)}</ul>
-      </li>
-    </ul>;
+    return (
+    <div>
+      <ul>
+        <li>
+          {this.props.team.leagueTitle}
+          <ul>{this.createItems(this.props.team.teams)}</ul>
+        </li>
+      </ul>
+    </div>
+    )
   },
   createItems: function(team){
     if (team != null) {
@@ -47,7 +48,8 @@ var TeamsButton = React.createClass({
   getInitialState: function() {
     return {
       // NOTE: For some reason if the array is empty I cant push anything to it
-      teams: [ {} ]
+      teams: [ {} ],
+      myTeams: []
     }
   },
   componentDidMount: function() {
@@ -72,27 +74,28 @@ var TeamsButton = React.createClass({
       }
     });
   },
-  renderTeam: function() {
-    var home = Math.floor((Math.random() * this.state.teams.length));
-    var away = Math.floor((Math.random() * this.state.teams.length));
+  getTeams: function(){
+    var home = Math.floor((Math.random() * this.state.myTeams.length));
+    var away = Math.floor((Math.random() * this.state.myTeams.length));
+    console.log("My teams:", this.state.myTeams);
+    console.log("Home number:", home);
+    console.log("Away number:", away);
     ReactDOM.render(
-    	<Team team={this.state.teams[home].teams[home]} />, document.getElementById("home")
+    	<Team team={this.state.myTeams[home]} />, document.getElementById("home")
     );
     ReactDOM.render(
-    	<Team team={this.state.teams[away].teams[away]} />, document.getElementById("away")
+    	<Team team={this.state.myTeams[away]} />, document.getElementById("away")
     );
-	},
+  },
   render: function() {
     return (
       <div>
         <ul className="menu">
           {this.state.teams.map(function(team, i){
-            return <ListItem key={i} team={team} ref={'team' + i} />
+            return <ListItem key={i} team={team} myTeams={this.state.myTeams} ref={'team' + i} />
           }, this)}
         </ul>
-  			<div>
-  				<a href="#" onClick={this.renderTeam} className="btn">Get Teams</a>
-  			</div>
+        <a href="#" className="btn" onClick={this.getTeams}>Get Teams</a>
       </div>
     );
   }
