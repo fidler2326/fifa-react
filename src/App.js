@@ -3,6 +3,8 @@ import React from 'react';
 import './App.css';
 import $ from 'jquery';
 
+var LocalStorageMixin = require('react-localstorage');
+
 var Team = React.createClass({
   render: function(team) {
     console.log("Here", this.props.team);
@@ -61,6 +63,7 @@ var ListItem = React.createClass({
 });
 
 var TeamsButton = React.createClass({
+  mixins: [LocalStorageMixin],
   getInitialState: function() {
     return {
       // NOTE: For some reason if the array is empty I cant push anything to it
