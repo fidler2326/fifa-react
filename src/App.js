@@ -124,6 +124,7 @@ var TeamsButton = React.createClass({
             return <ListItem key={i} team={team} myTeams={this.state.myTeams} ref={'team' + i} />
           }, this)}
         </ul>
+        <div className="line"></div>
         <a href="#" className="btn" onClick={this.getTeams}>Get Teams</a>
       </div>
     );
