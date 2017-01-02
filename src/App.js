@@ -3,8 +3,6 @@ import React from 'react';
 import './App.css';
 import $ from 'jquery';
 
-var LocalStorageMixin = require('react-localstorage');
-
 var Team = React.createClass({
   render: function(team) {
     console.log("Here", this.props.team);
@@ -19,7 +17,6 @@ var Team = React.createClass({
 });
 
 var ListItem = React.createClass({
-  mixins: [LocalStorageMixin],
   getInitialState: function() {
     return {
       clicked: false,
@@ -43,19 +40,8 @@ var ListItem = React.createClass({
     // Push team to the my teams array
     this.state.myTeams.push(team);
     console.log("My Teams", this.state.myTeams);
-  },
-  getTeams: function(){
-    var home = Math.floor((Math.random() * this.state.myTeams.length));
-    var away = Math.floor((Math.random() * this.state.myTeams.length));
-    console.log("My teams:", this.state.myTeams);
-    console.log("Home number:", home);
-    console.log("Away number:", away);
-    ReactDOM.render(
-    	<Team team={this.state.myTeams[home]} />, document.getElementById("home")
-    );
-    ReactDOM.render(
-    	<Team team={this.state.myTeams[away]} />, document.getElementById("away")
-    );
+
+    localStorage.setItem('myTeams', JSON.stringify(this.state.myTeams));
   },
   handleClick: function() {
     // NOTE: Must be a better way to do this
@@ -78,7 +64,6 @@ var ListItem = React.createClass({
           </ul>
         </li>
       </ul>
-      <a href="#" className="btn" onClick={this.getTeams}>Get Teams</a>
     </div>
     )
   },
@@ -91,7 +76,33 @@ var ListItem = React.createClass({
   }
 });
 
-var TeamsButton = React.createClass({
+var GetTeams = React.createClass({
+  getTeams: function(){
+    var myTeamsObject = localStorage.getItem('myTeams');
+    var myTeams = JSON.parse(myTeamsObject);
+
+    var home = Math.floor((Math.random() * myTeams.length));
+    var away = Math.floor((Math.random() * myTeams.length));
+    console.log("My teams:", myTeams);
+    console.log("Home number:", home);
+    console.log("Away number:", away);
+    ReactDOM.render(
+    	<Team team={myTeams[home]} />, document.getElementById("home")
+    );
+    ReactDOM.render(
+    	<Team team={myTeams[away]} />, document.getElementById("away")
+    );
+  },
+  render: function() {
+    return (
+      <div>
+        <a href="#" className="btn" onClick={this.getTeams}>Get Teams</a>
+      </div>
+    )
+  }
+});
+
+var Menu = React.createClass({
   getInitialState: function() {
     return {
       // NOTE: For some reason if the array is empty I cant push anything to it
@@ -151,5 +162,9 @@ var TeamsButton = React.createClass({
 });
 
 ReactDOM.render(
-	<TeamsButton />, document.getElementById("button")
+	<Menu />, document.getElementById("button")
+);
+
+ReactDOM.render(
+	<GetTeams />, document.getElementById("getTeams")
 );
