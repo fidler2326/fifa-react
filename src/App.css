@@ -45,6 +45,7 @@ body{
   background-color: #000;
   position: fixed;
   top: 0; left: 0;
+  z-index: 9;
   transform: translateX(-100%);
   overflow-y: scroll;
   transition: 0.3s ease;
@@ -71,6 +72,17 @@ body{
 
 .sub-menu.active{
   transform: translateX(0);
+}
+
+.sub-menu li label{
+  display: inline-block;
+  width: 100%;
+  padding: 5px;
+  position: relative;
+}
+
+.sub-menu li input{
+  position: absolute;
 }
 
 .menu-trigger{

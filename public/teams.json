@@ -55,5 +55,36 @@
       {"name":"Sheffield Wed", "stars":"3.5", "country":"England", "league":"FL Championship"},
       {"name":"Wolves", "stars":"3.0", "country":"England", "league":"FL Championship"}
     ]
+  },
+
+  {
+    "leagueTitle": "England League 1",
+    "leagueCode": "eng1",
+    "teams": [
+      {"name":"Barnsley", "stars": "2.0", "country":"England", "league":"Football League 1"},
+      {"name":"Blackpool", "stars": "1.5", "country":"England", "league":"Football League 1"},
+      {"name":"Bradford City", "stars": "2.5", "country":"England", "league":"Football League 1"},
+      {"name":"Burton Albion", "stars": "2.0", "country":"England", "league":"Football League 1"},
+      {"name":"Bury", "stars": "2.5", "country":"England", "league":"Football League 1"},
+      {"name":"Chesterfield", "stars": "2.5", "country":"England", "league":"Football League 1"},
+      {"name":"Colchester", "stars": "2.0", "country":"England", "league":"Football League 1"},
+      {"name":"Coventry City", "stars": "2.5", "country":"England", "league":"Football League 1"},
+      {"name":"Crewe Alexandra", "stars": "1.5", "country":"England", "league":"Football League 1"},
+      {"name":"Doncaster", "stars": "2.5", "country":"England", "league":"Football League 1"},
+      {"name":"Fleetwood Town", "stars": "1.5", "country":"England", "league":"Football League 1"},
+      {"name":"Gillingham", "stars": "2.0", "country":"England", "league":"Football League 1"},
+      {"name":"Millwall", "stars": "3.0", "country":"England", "league":"Football League 1"},
+      {"name":"Oldham Athletic", "stars": "2.0", "country":"England", "league":"Football League 1"},
+      {"name":"Peterborough", "stars": "2.0", "country":"England", "league":"Football League 1"},
+      {"name":"Port Vale", "stars": "2.0", "country":"England", "league":"Football League 1"},
+      {"name":"Rochdale", "stars": "2.0", "country":"England", "league":"Football League 1"},
+      {"name":"Scunthorpe Utd", "stars": "2.0", "country":"England", "league":"Football League 1"},
+      {"name":"Sheffield Utd", "stars": "3.0", "country":"England", "league":"Football League 1"},
+      {"name":"Shrewsbury", "stars": "2.0", "country":"England", "league":"Football League 1"},
+      {"name":"Southend United", "stars": "2.0", "country":"England", "league":"Football League 1"},
+      {"name":"Swindon Town", "stars": "1.5", "country":"England", "league":"Football League 1"},
+      {"name":"Walsall", "stars": "2.0", "country":"England", "league":"Football League 1"},
+      {"name":"Wigan Athletic", "stars": "3.0", "country":"England", "league":"Football League 1"}
+    ]
   }
 ]

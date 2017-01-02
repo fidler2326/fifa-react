@@ -6,11 +6,41 @@ import $ from 'jquery';
 var Team = React.createClass({
   render: function(team) {
     console.log("Here", this.props.team);
+    var starClass;
+    switch(this.props.team.stars) {
+      case '1.0':
+        starClass = 'one';
+        break;
+      case '1.5':
+        starClass = 'oneHalf';
+        break;
+      case '2.0':
+        starClass = 'two';
+        break;
+      case '2.5':
+        starClass = 'twoHalf';
+        break;
+      case '3.0':
+        starClass = 'three';
+        break;
+      case '3.5':
+        starClass = 'threeHalf';
+        break;
+      case '4.0':
+        starClass = 'four';
+        break;
+      case '4.5':
+        starClass = 'fourHalf';
+        break;
+      case '4.5':
+        starClass = 'five';
+        break;
+    }
     return (
       <div className="half">
         <p>{this.props.team.name}</p><br />
         <p>{this.props.team.league}, {this.props.team.country}</p><br />
-        <p>{this.props.team.stars}</p>
+        <p className={starClass}>{this.props.team.stars}</p>
       </div>
     );
   }
@@ -41,6 +71,7 @@ var ListItem = React.createClass({
     this.state.myTeams.push(team);
     console.log("My Teams", this.state.myTeams);
 
+    // localStorage.clear('myTeams');
     localStorage.setItem('myTeams', JSON.stringify(this.state.myTeams));
   },
   handleClick: function() {
