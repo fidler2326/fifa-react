@@ -19,19 +19,47 @@ var Team = React.createClass({
 });
 
 var ListItem = React.createClass({
+  mixins: [LocalStorageMixin],
   getInitialState: function() {
     return {
-      clicked: false
+      clicked: false,
+      myTeams: [],
     }
   },
-  addTeam: function(team){
+  addTeam: function(team, event){
+
+    // Save checkbox state
+    var j, checkboxes = document.querySelectorAll('input[type=checkbox]');
+    // NOTE: Shouldn't need the delay here
+    // TODO: Work out how to remove this delay function
+    setTimeout(function() {
+      for (j = 0; j < checkboxes.length; j++) {
+        localStorage.setItem(checkboxes[j].value, checkboxes[j].checked);
+        console.log(checkboxes[j].checked)
+      }
+    }, 100);
+
     console.log("Clicked Team:", team);
     // Push team to the my teams array
-    this.props.myTeams.push(team);
-    console.log("My Teams", this.props.myTeams);
+    this.state.myTeams.push(team);
+    console.log("My Teams", this.state.myTeams);
+  },
+  getTeams: function(){
+    var home = Math.floor((Math.random() * this.state.myTeams.length));
+    var away = Math.floor((Math.random() * this.state.myTeams.length));
+    console.log("My teams:", this.state.myTeams);
+    console.log("Home number:", home);
+    console.log("Away number:", away);
+    ReactDOM.render(
+    	<Team team={this.state.myTeams[home]} />, document.getElementById("home")
+    );
+    ReactDOM.render(
+    	<Team team={this.state.myTeams[away]} />, document.getElementById("away")
+    );
   },
   handleClick: function() {
-    if(this.state.clicked != true) {
+    // NOTE: Must be a better way to do this
+    if(this.state.clicked !== true) {
       this.setState({clicked: true});
     } else {
       this.setState({clicked: false});
@@ -50,25 +78,25 @@ var ListItem = React.createClass({
           </ul>
         </li>
       </ul>
+      <a href="#" className="btn" onClick={this.getTeams}>Get Teams</a>
     </div>
     )
   },
   createItems: function(team){
     if (team != null) {
       var output = [];
-      for(var i = 0; i < team.length; i++) output.push(<li key={i}><input type="checkbox" id={this.props.team.leagueCode + '-' + i} /><label htmlFor={this.props.team.leagueCode + '-' + i} onClick={this.addTeam.bind(this, team[i])}>{team[i].name}</label></li>);
+      for(var i = 0; i < team.length; i++) output.push(<li key={i}><input type="checkbox" id={this.props.team.leagueCode + '-' + i} value={this.props.team.leagueCode + '-' + i} /><label htmlFor={this.props.team.leagueCode + '-' + i} onClick={this.addTeam.bind(this, team[i], i)}>{team[i].name}</label></li>);
       return output;
     }
   }
 });
 
 var TeamsButton = React.createClass({
-  mixins: [LocalStorageMixin],
   getInitialState: function() {
     return {
       // NOTE: For some reason if the array is empty I cant push anything to it
       teams: [ {} ],
-      myTeams: [],
+      // myTeams: [],
       clicked: false
     }
   },
@@ -80,7 +108,7 @@ var TeamsButton = React.createClass({
       success: function(data) {
         // Empty array first
         // NOTE: This is to remove the first object in the array that is set initially
-        this.state.teams=[];
+        this.setState({teams: []});
         // NOTE: Need to define i outside of the for loop (not sure why this is)
         var i = 0;
         // Loop through each team and push to array
@@ -95,24 +123,16 @@ var TeamsButton = React.createClass({
     });
   },
   handleClick: function() {
-    if(this.state.clicked != true) {
+    if(this.state.clicked !== true) {
       this.setState({clicked: true});
     } else {
       this.setState({clicked: false});
     }
-  },
-  getTeams: function(){
-    var home = Math.floor((Math.random() * this.state.myTeams.length));
-    var away = Math.floor((Math.random() * this.state.myTeams.length));
-    console.log("My teams:", this.state.myTeams);
-    console.log("Home number:", home);
-    console.log("Away number:", away);
-    ReactDOM.render(
-    	<Team team={this.state.myTeams[home]} />, document.getElementById("home")
-    );
-    ReactDOM.render(
-    	<Team team={this.state.myTeams[away]} />, document.getElementById("away")
-    );
+    // Set checkbox vaules NOTE: Not sure if this is the best place to do this look into it later.
+    var j, checkboxes = document.querySelectorAll('input[type=checkbox]');
+    for (j = 0; j < checkboxes.length; j++) {
+      checkboxes[j].checked = localStorage.getItem(checkboxes[j].value) === 'true' ? true:false;
+    }
   },
   render: function() {
     var className = this.state.clicked ? 'active' : '';
@@ -125,7 +145,6 @@ var TeamsButton = React.createClass({
           }, this)}
         </ul>
         <div className="line"></div>
-        <a href="#" className="btn" onClick={this.getTeams}>Get Teams</a>
       </div>
     );
   }
