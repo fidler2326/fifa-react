@@ -127,7 +127,7 @@ var GetTeams = React.createClass({
   render: function() {
     return (
       <div>
-        <a href="#" className="btn" onClick={this.getTeams}>Get Teams</a>
+        <a href="#" className="btn" onClick={this.getTeams}></a>
       </div>
     )
   }
