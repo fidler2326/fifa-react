@@ -95,13 +95,13 @@ body:before{
 .sub-menu li label{
   display: inline-block;
   width: 100%;
-  padding: 5px;
+  padding: 5px 5px 5px 25px;
   color: #000;
   position: relative;
 }
 
 .sub-menu li input{
-  position: absolute;
+  display: none;
 }
 
 .menu-trigger{
@@ -135,4 +135,22 @@ body:before{
   position: absolute;
   top: 50%; left: 50%;
   transform: translate(-50%,calc(-50% + 0.5px));
+}
+
+label:before{
+  content: '';
+  width: 12px; height: 12px;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 2px solid #000;
+  border-radius: 100%;
+  position: absolute;
+  top: 50%; left: 5px;
+  transform: translateY(-50%);
+}
+
+input:checked + label:before{
+  background-image: url(../public/icon-tick.png);
+  background-color: #f6bb42;
+  border-color: #f6bb42;
 }
