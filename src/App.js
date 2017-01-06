@@ -114,7 +114,7 @@ var GetTeams = React.createClass({
 
     var home = Math.floor((Math.random() * myTeams.length));
     var away = Math.floor((Math.random() * myTeams.length));
-    
+
     ReactDOM.render(
     	<Team team={myTeams[home]} />, document.getElementById("home")
     );
@@ -179,7 +179,7 @@ var Menu = React.createClass({
     var className = this.state.clicked ? 'active' : '';
     return (
       <div>
-        <a href="#" className={"menu-trigger " + className} onClick={this.handleClick}>Menu</a>
+        <a href="#" className={"menu-trigger " + className} onClick={this.handleClick}><span></span></a>
         <ul className={"menu " + className} >
           {this.state.teams.map(function(team, i){
             return <ListItem key={i} team={team} myTeams={this.state.myTeams} ref={'team' + i} />
