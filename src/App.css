@@ -12,7 +12,7 @@ body{
 body:before{
   content: '';
   width: 100%; height: 100%;
-  background-color: rgba(0,0,0,0.65);
+  background-color: rgba(0,0,0,0.75);
   position: absolute;
   top: 0; left: 0;
 }
@@ -69,6 +69,18 @@ body:before{
   transition: 0.3s ease;
 }
 
+.menu::-webkit-scrollbar {
+  width: 5px;
+}
+
+.menu::-webkit-scrollbar-track {
+  background: #ddd;
+}
+
+.menu::-webkit-scrollbar-thumb {
+  background: #666;
+}
+
 .menu.active{
   transform: translateX(0);
 }
@@ -86,6 +98,18 @@ body:before{
   overflow-y: scroll;
   transform: translateX(-100%);
   transition: 0.3s ease;
+}
+
+.sub-menu::-webkit-scrollbar {
+  width: 5px;
+}
+
+.sub-menu::-webkit-scrollbar-track {
+  background: #ddd;
+}
+
+.sub-menu::-webkit-scrollbar-thumb {
+  background: #666;
 }
 
 .sub-menu.active{

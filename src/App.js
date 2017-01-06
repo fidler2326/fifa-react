@@ -3,9 +3,10 @@ import React from 'react';
 import './App.css';
 import $ from 'jquery';
 
+var LocalStorageMixin = require('react-localstorage');
+
 var Team = React.createClass({
   render: function(team) {
-    console.log("Here", this.props.team);
     var starClass;
     switch(this.props.team.stars) {
       case '1.0':
@@ -32,9 +33,11 @@ var Team = React.createClass({
       case '4.5':
         starClass = 'fourHalf';
         break;
-      case '4.5':
+      case '5.0':
         starClass = 'five';
         break;
+      default:
+        starClass = '';
     }
     return (
       <div className="half">
@@ -50,7 +53,7 @@ var ListItem = React.createClass({
   getInitialState: function() {
     return {
       clicked: false,
-      myTeams: [],
+      // myTeams: [],
     }
   },
   addTeam: function(team, event){
@@ -62,17 +65,14 @@ var ListItem = React.createClass({
     setTimeout(function() {
       for (j = 0; j < checkboxes.length; j++) {
         localStorage.setItem(checkboxes[j].value, checkboxes[j].checked);
-        console.log(checkboxes[j].checked)
       }
     }, 100);
 
-    console.log("Clicked Team:", team);
     // Push team to the my teams array
-    this.state.myTeams.push(team);
-    console.log("My Teams", this.state.myTeams);
+    this.props.myTeams.push(team);
 
-    // localStorage.clear('myTeams');
-    localStorage.setItem('myTeams', JSON.stringify(this.state.myTeams));
+    localStorage.clear('myTeams');
+    localStorage.setItem('myTeams', JSON.stringify(this.props.myTeams));
   },
   handleClick: function() {
     // NOTE: Must be a better way to do this
@@ -114,9 +114,7 @@ var GetTeams = React.createClass({
 
     var home = Math.floor((Math.random() * myTeams.length));
     var away = Math.floor((Math.random() * myTeams.length));
-    console.log("My teams:", myTeams);
-    console.log("Home number:", home);
-    console.log("Away number:", away);
+    
     ReactDOM.render(
     	<Team team={myTeams[home]} />, document.getElementById("home")
     );
@@ -134,11 +132,12 @@ var GetTeams = React.createClass({
 });
 
 var Menu = React.createClass({
+  mixins: [LocalStorageMixin],
   getInitialState: function() {
     return {
       // NOTE: For some reason if the array is empty I cant push anything to it
       teams: [ {} ],
-      // myTeams: [],
+      myTeams: [],
       clicked: false
     }
   },
