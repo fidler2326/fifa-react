@@ -67,12 +67,34 @@ var ListItem = React.createClass({
         localStorage.setItem(checkboxes[j].value, checkboxes[j].checked);
       }
     }, 100);
+    // console.log('Team:', team);
+
+    var add = true;
+
+    var k;
+    for (k = 0; k < this.props.myTeams.length; k++) {
+      if (this.props.myTeams[k] === team) {
+        console.log("yes",k);
+        this.props.myTeams.splice(k,1);
+        // Update local storage
+        localStorage.clear('myTeams');
+        localStorage.setItem('myTeams', JSON.stringify(this.props.myTeams));
+
+        // Stop team being pushed to array again
+        add = false;
+      }
+    }
 
     // Push team to the my teams array
-    this.props.myTeams.push(team);
+    if (add === true) {
+      this.props.myTeams.push(team);
 
-    localStorage.clear('myTeams');
-    localStorage.setItem('myTeams', JSON.stringify(this.props.myTeams));
+      localStorage.clear('myTeams');
+      localStorage.setItem('myTeams', JSON.stringify(this.props.myTeams));
+    }
+
+    console.log(this.props.myTeams);
+
   },
   handleClick: function() {
     // NOTE: Must be a better way to do this
