@@ -118,10 +118,24 @@ body:before{
   padding: 16px 10px;
   border-bottom: 1px solid #bbb;
   cursor: pointer;
+  transition: 0.1s ease;
 }
 
 @media(min-width: 728px){
-  .menu li:hover{ background-color: #eee; }  
+  .menu li:hover{ background-color: #eee; }
+}
+
+.menu li label{
+  transform: scale(1,1);
+  transition: 0.1s ease;
+}
+
+.menu li:active{
+  background-color: #eee;
+}
+
+.menu li:active > label{
+  transform: scale(0.96,0.96);
 }
 
 .menu li.back{
@@ -206,13 +220,13 @@ body:before{
 .sub-menu li{
   padding: 0;
   border: 0;
+  border-bottom: 1px solid #bbb;
 }
 
 .sub-menu li label{
   display: inline-block;
   width: 100%;
   padding: 16px 5px 16px 35px;
-  border-bottom: 1px solid #bbb;
   color: #000;
   position: relative;
   cursor: pointer;
