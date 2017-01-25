@@ -120,7 +120,9 @@ body:before{
   cursor: pointer;
 }
 
-.menu li:hover{ background-color: #eee; }
+@media(min-width: 728px){
+  .menu li:hover{ background-color: #eee; }  
+}
 
 .menu li.back{
   display: flex;
