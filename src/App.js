@@ -7,6 +7,11 @@ var LocalStorageMixin = require('react-localstorage');
 
 var Team = React.createClass({
   render: function(team) {
+    // Add and remove animation class to re trigger animations
+    document.getElementById("body").className = "";
+    setTimeout(function() {
+      document.getElementById("body").className = "active";
+    }, 100);
     var starClass;
     switch(this.props.team.stars) {
       case '1.0':
@@ -112,7 +117,7 @@ var ListItem = React.createClass({
         <li onClick={this.handleClick}>
           {this.props.team.leagueTitle}
           <ul className={"sub-menu " + className}>
-            <li onClick={this.handleClick}>Back</li>
+            <li className="back"><i>{this.props.team.leagueTitle}</i> <span className="close" onClick={this.handleClick}></span></li>
             {this.createItems(this.props.team.teams)}
           </ul>
         </li>
@@ -172,13 +177,13 @@ var Menu = React.createClass({
         // Empty array first
         // NOTE: This is to remove the first object in the array that is set initially
         this.setState({teams: []});
-        // NOTE: Need to define i outside of the for loop (not sure why this is)
         var i = 0;
         // Loop through each team and push to array
         for (i = 0; i < data.length; i++) {
           this.state.teams.push(data[i]);
           this.forceUpdate();
         }
+        document.getElementById("loading").className = "";
       }.bind(this),
       error: function(xhr, status, err) {
         console.error(status, err.toString());
