@@ -1,12 +1,12 @@
 import ReactDOM from 'react-dom';
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import $ from 'jquery';
 
 var LocalStorageMixin = require('react-localstorage');
 
-var Team = React.createClass({
-  render: function(team) {
+class Team extends Component {
+  render(team) {
     // Add and remove animation class to re trigger animations
     document.getElementById("body").className = "";
     setTimeout(function() {
@@ -51,17 +51,17 @@ var Team = React.createClass({
         <p className={starClass}>{this.props.team.stars}</p>
       </div>
     );
-  }
-});
+  };
+};
 
-var ListItem = React.createClass({
-  getInitialState: function() {
-    return {
+class ListItem extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
       clicked: false,
-      // myTeams: [],
-    }
-  },
-  addTeam: function(team, event){
+    };
+  }
+  addTeam(team, event){
 
     // Save checkbox state
     var j, checkboxes = document.querySelectorAll('input[type=checkbox]');
@@ -100,21 +100,21 @@ var ListItem = React.createClass({
 
     console.log(this.props.myTeams);
 
-  },
-  handleClick: function() {
+  }
+  handleClick() {
     // NOTE: Must be a better way to do this
     if(this.state.clicked !== true) {
       this.setState({clicked: true});
     } else {
       this.setState({clicked: false});
     }
-  },
-  render: function(){
+  }
+  render(){
     var className = this.state.clicked ? 'active' : '';
     return (
     <div>
       <ul>
-        <li onClick={this.handleClick}>
+        <li onClick={this.handleClick.bind(this)}>
           {this.props.team.leagueTitle}
           <ul className={"sub-menu " + className}>
             <li className="back"><i>{this.props.team.leagueTitle}</i> <span className="close" onClick={this.handleClick}></span></li>
@@ -124,18 +124,18 @@ var ListItem = React.createClass({
       </ul>
     </div>
     )
-  },
-  createItems: function(team){
+  }
+  createItems(team){
     if (team != null) {
       var output = [];
       for(var i = 0; i < team.length; i++) output.push(<li key={i}><input type="checkbox" id={this.props.team.leagueCode + '-' + i} value={this.props.team.leagueCode + '-' + i} /><label htmlFor={this.props.team.leagueCode + '-' + i} onClick={this.addTeam.bind(this, team[i], i)}>{team[i].name}</label></li>);
       return output;
     }
   }
-});
+};
 
-var GetTeams = React.createClass({
-  getTeams: function(){
+class GetTeams extends Component {
+  getTeams(){
     var myTeamsObject = localStorage.getItem('myTeams');
     var myTeams = JSON.parse(myTeamsObject);
 
@@ -148,27 +148,28 @@ var GetTeams = React.createClass({
     ReactDOM.render(
     	<Team team={myTeams[away]} />, document.getElementById("away")
     );
-  },
-  render: function() {
+  };
+  render() {
     return (
       <div>
         <a href="#" className="btn" onClick={this.getTeams}></a>
       </div>
     )
-  }
-});
+  };
+};
 
-var Menu = React.createClass({
-  mixins: [LocalStorageMixin],
-  getInitialState: function() {
-    return {
+class Menu extends Component {
+  mixins: [LocalStorageMixin];
+  constructor(props) {
+    super(props);
+    this.state = {
       // NOTE: For some reason if the array is empty I cant push anything to it
       teams: [ {} ],
       myTeams: [],
       clicked: false
-    }
-  },
-  componentDidMount: function() {
+    };
+  };
+  componentDidMount() {
     $.ajax({
       url: 'teams.json',
       dataType: 'json',
@@ -189,8 +190,8 @@ var Menu = React.createClass({
         console.error(status, err.toString());
       }
     });
-  },
-  handleClick: function() {
+  };
+  handleClick() {
     if(this.state.clicked !== true) {
       this.setState({clicked: true});
     } else {
@@ -201,12 +202,12 @@ var Menu = React.createClass({
     for (j = 0; j < checkboxes.length; j++) {
       checkboxes[j].checked = localStorage.getItem(checkboxes[j].value) === 'true' ? true:false;
     }
-  },
-  render: function() {
+  };
+  render() {
     var className = this.state.clicked ? 'active' : '';
     return (
       <div>
-        <a href="#" className={"menu-trigger " + className} onClick={this.handleClick}><span></span></a>
+        <a href="#" className={"menu-trigger " + className} onClick={this.handleClick.bind(this)}><span></span></a>
         <ul className={"menu " + className} >
           {this.state.teams.map(function(team, i){
             return <ListItem key={i} team={team} myTeams={this.state.myTeams} ref={'team' + i} />
@@ -215,8 +216,8 @@ var Menu = React.createClass({
         <div className="line"></div>
       </div>
     );
-  }
-});
+  };
+};
 
 ReactDOM.render(
 	<Menu />, document.getElementById("button")
