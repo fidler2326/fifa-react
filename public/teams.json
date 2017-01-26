@@ -1,7 +1,7 @@
 [
   {
     "leagueTitle": "England - Premier League",
-    "leagueCode": "prem",
+    "leagueCode": "lg1",
     "teams": [
       {"name":"Arsenal", "stars": "0.0", "country":"England", "league":"Premier League"},
       {"name":"Bournemouth", "stars": "0.0", "country":"England", "league":"Premier League"},
@@ -28,7 +28,7 @@
 
   {
     "leagueTitle": "England - EFL Championship",
-    "leagueCode": "champ",
+    "leagueCode": "lg2",
     "teams": [
       {"name":"Aston Villa", "stars": "0.0", "country":"England", "league":"EFL Championship"},
       {"name":"Barnsley", "stars": "0.0", "country":"England", "league":"EFL Championship"},
@@ -59,7 +59,7 @@
 
   {
     "leagueTitle": "England - EFL League One",
-    "leagueCode": "eng1",
+    "leagueCode": "lg3",
     "teams": [
       {"name":"AFC Wimbledon", "stars": "0.0", "country":"England", "league":"EFL League One"},
       {"name":"Bolton Wanderers", "stars": "0.0", "country":"England", "league":"EFL League One"},
@@ -90,7 +90,7 @@
 
   {
     "leagueTitle": "England - EFL League Two",
-    "leagueCode": "eng2",
+    "leagueCode": "lg4",
     "teams": [
       {"name":"Accrington Stanley", "stars": "0.0", "country":"England", "league":"EFL League Two"},
       {"name":"Barnet", "stars": "0.0", "country":"England", "league":"EFL League Two"},
@@ -120,8 +120,87 @@
   },
 
   {
+    "leagueTitle": "France - Ligue 1",
+    "leagueCode": "lg7",
+    "teams": [
+      {"name":"AS Monaco", "stars": "0.0", "country":"France", "league":"Ligue 1"},
+      {"name":"AS Nancy", "stars": "0.0", "country":"France", "league":"Ligue 1"},
+      {"name":"AS Saint-Étienne", "stars": "0.0", "country":"France", "league":"Ligue 1"},
+      {"name":"Angers SCO", "stars": "0.0", "country":"France", "league":"Ligue 1"},
+      {"name":"Dijon Football", "stars": "0.0", "country":"France", "league":"Ligue 1"},
+      {"name":"En Avant Guingamp", "stars": "0.0", "country":"France", "league":"Ligue 1"},
+      {"name":"FC Lorient", "stars": "0.0", "country":"France", "league":"Ligue 1"},
+      {"name":"FC Metz", "stars": "0.0", "country":"France", "league":"Ligue 1"},
+      {"name":"FC Nantes", "stars": "0.0", "country":"France", "league":"Ligue 1"},
+      {"name":"Girondins de Bordeaux", "stars": "0.0", "country":"France", "league":"Ligue 1"},
+      {"name":"LOSC Lille", "stars": "0.0", "country":"France", "league":"Ligue 1"},
+      {"name":"Montpellier HSC", "stars": "0.0", "country":"France", "league":"Ligue 1"},
+      {"name":"OGC Nice", "stars": "0.0", "country":"France", "league":"Ligue 1"},
+      {"name":"Olympique Lyonnais", "stars": "0.0", "country":"France", "league":"Ligue 1"},
+      {"name":"Olympique de Marseille", "stars": "0.0", "country":"France", "league":"Ligue 1"},
+      {"name":"Paris Saint-Germain", "stars": "0.0", "country":"France", "league":"Ligue 1"},
+      {"name":"SC Bastia", "stars": "0.0", "country":"France", "league":"Ligue 1"},
+      {"name":"SM Caen", "stars": "0.0", "country":"France", "league":"Ligue 1"},
+      {"name":"Stade Rennais", "stars": "0.0", "country":"France", "league":"Ligue 1"},
+      {"name":"Toulouse FC", "stars": "0.0", "country":"France", "league":"Ligue 1"}
+    ]
+  },
+
+  {
+    "leagueTitle": "Germany - Bundesliga",
+    "leagueCode": "lg6",
+    "teams": [
+      {"name":"1. FC Köln", "stars": "0.0", "country":"Germany", "league":"Bundesliga"},
+      {"name":"1. FSV Mainz 05", "stars": "0.0", "country":"Germany", "league":"Bundesliga"},
+      {"name":"Bayer 04 Leverkusen", "stars": "0.0", "country":"Germany", "league":"Bundesliga"},
+      {"name":"Bayern München", "stars": "0.0", "country":"Germany", "league":"Bundesliga"},
+      {"name":"Borussia Dortmund", "stars": "0.0", "country":"Germany", "league":"Bundesliga"},
+      {"name":"Borussia M'gladbach", "stars": "0.0", "country":"Germany", "league":"Bundesliga"},
+      {"name":"Eintracht Frankfurt", "stars": "0.0", "country":"Germany", "league":"Bundesliga"},
+      {"name":"FC Augsburg", "stars": "0.0", "country":"Germany", "league":"Bundesliga"},
+      {"name":"FC Ingolstadt 04", "stars": "0.0", "country":"Germany", "league":"Bundesliga"},
+      {"name":"FC Schalke 04", "stars": "0.0", "country":"Germany", "league":"Bundesliga"},
+      {"name":"Hamburger SV", "stars": "0.0", "country":"Germany", "league":"Bundesliga"},
+      {"name":"Hertha BSC", "stars": "0.0", "country":"Germany", "league":"Bundesliga"},
+      {"name":"RB Leipzig", "stars": "0.0", "country":"Germany", "league":"Bundesliga"},
+      {"name":"SC Freiburg", "stars": "0.0", "country":"Germany", "league":"Bundesliga"},
+      {"name":"SV Darmstadt 98", "stars": "0.0", "country":"Germany", "league":"Bundesliga"},
+      {"name":"SV Werder Bremen", "stars": "0.0", "country":"Germany", "league":"Bundesliga"},
+      {"name":"TSG 1899 Hoffenheim", "stars": "0.0", "country":"Germany", "league":"Bundesliga"},
+      {"name":"VfL Wolfsburg", "stars": "0.0", "country":"Germany", "league":"Bundesliga"}
+    ]
+  },
+
+  {
+    "leagueTitle": "Italy - Serie A",
+    "leagueCode": "lg8",
+    "teams": [
+      {"name":"Atalanta", "stars": "0.0", "country":"Italy", "league":"Serie A"},
+      {"name":"Bologna", "stars": "0.0", "country":"Italy", "league":"Serie A"},
+      {"name":"Cagliari", "stars": "0.0", "country":"Italy", "league":"Serie A"},
+      {"name":"Chievo Verona", "stars": "0.0", "country":"Italy", "league":"Serie A"},
+      {"name":"Crotone", "stars": "0.0", "country":"Italy", "league":"Serie A"},
+      {"name":"Empoli", "stars": "0.0", "country":"Italy", "league":"Serie A"},
+      {"name":"Fiorentina", "stars": "0.0", "country":"Italy", "league":"Serie A"},
+      {"name":"Genoa", "stars": "0.0", "country":"Italy", "league":"Serie A"},
+      {"name":"Inter", "stars": "0.0", "country":"Italy", "league":"Serie A"},
+      {"name":"Juventus", "stars": "0.0", "country":"Italy", "league":"Serie A"},
+      {"name":"Lazio", "stars": "0.0", "country":"Italy", "league":"Serie A"},
+      {"name":"Milan", "stars": "0.0", "country":"Italy", "league":"Serie A"},
+      {"name":"Napoli", "stars": "0.0", "country":"Italy", "league":"Serie A"},
+      {"name":"Palermo", "stars": "0.0", "country":"Italy", "league":"Serie A"},
+      {"name":"Pescara", "stars": "0.0", "country":"Italy", "league":"Serie A"},
+      {"name":"Roma", "stars": "0.0", "country":"Italy", "league":"Serie A"},
+      {"name":"Sampdoria", "stars": "0.0", "country":"Italy", "league":"Serie A"},
+      {"name":"Sassuolo", "stars": "0.0", "country":"Italy", "league":"Serie A"},
+      {"name":"Torino", "stars": "0.0", "country":"Italy", "league":"Serie A"},
+      {"name":"Udinese", "stars": "0.0", "country":"Italy", "league":"Serie A"}
+    ]
+  },
+
+  {
     "leagueTitle": "Spain - La Liga",
-    "leagueCode": "la1",
+    "leagueCode": "lg5",
     "teams": [
       {"name":"Athletic Club de Bilbao", "stars": "0.0", "country":"Spain", "league":"La Liga"},
       {"name":"Atlético de Madrid", "stars": "0.0", "country":"Spain", "league":"La Liga"},

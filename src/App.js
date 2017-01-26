@@ -183,7 +183,7 @@ var Menu = React.createClass({
           this.state.teams.push(data[i]);
           this.forceUpdate();
         }
-        document.getElementById("loading").className = "";
+        // document.getElementById("loading").className = "";
       }.bind(this),
       error: function(xhr, status, err) {
         console.error(status, err.toString());
