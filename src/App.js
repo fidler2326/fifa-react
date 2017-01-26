@@ -117,7 +117,7 @@ class ListItem extends Component {
         <li onClick={this.handleClick.bind(this)}>
           {this.props.team.leagueTitle}
           <ul className={"sub-menu " + className}>
-            <li className="back"><i>{this.props.team.leagueTitle}</i> <span className="close" onClick={this.handleClick}></span></li>
+            <li className="back"><i>{this.props.team.leagueTitle}</i> <span className="close" onClick={this.handleClick.bind(this)}></span></li>
             {this.createItems(this.props.team.teams)}
           </ul>
         </li>
