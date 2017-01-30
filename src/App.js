@@ -220,9 +220,11 @@ class Menu extends Component {
 };
 
 ReactDOM.render(
-	<Menu />, document.getElementById("button")
+	<Menu />,
+  document.getElementById("button")
 );
 
 ReactDOM.render(
-	<GetTeams />, document.getElementById("getTeams")
+	<GetTeams />,
+  document.getElementById("getTeams")
 );
